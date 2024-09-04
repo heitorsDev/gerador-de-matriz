@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Matriz</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerador de Matriz</h1>
+    <label for="law">Digite a lei de formação (ex: i*j+2):</label><br>
+    <input type="text" id="law" placeholder="e.g., i * j" />
+    <button onclick="generateMatrix()">Gerar</button>
+
+    <div id="matrixContainer"></div>
+
+    <script>
+        function generateMatrix() {
+    const law = document.getElementById('law').value;
+    const rows = 5; 
+    const cols = 5; 
+
+    let matrix = [];
+    
+    for (let i = 0; i < rows; i++) {
+        let row = [];
+        for (let j = 0; j < cols; j++) {
+            const value = eval(law);
+            row.push(value);
+        }
+        matrix.push(row);
+    }
+
+    renderTable(matrix);
+}
+
+function renderTable(matrix) {
+    const matrixContainer = document.getElementById('matrixContainer');
+    let table = '<table>';
+    
+    matrix.forEach(row => {
+        table += '<tr>';
+        row.forEach(cell => {
+            table += `<td>${cell}</td>`;
+        });
+        table += '</tr>';
+    });
+    
+    table += '</table>';
+    
+    matrixContainer.innerHTML = table;
+}
+
+    </script>
+</body>
+</html>
